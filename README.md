@@ -3,7 +3,7 @@ Ollama Auto Py Fixer
 An automated system for executing, analyzing, and fixing Python projects iteratively.
 
 🚀 Overview
-
+![20250930_164331.jpg](https://github.com/user-attachments/assets/f2e9f13e-b4b8-46d5-a36c-56752ed00f2b)
 Auto Orchestrator is a set of tools that enables:
 
 · Automatically executing all Python scripts in a project
