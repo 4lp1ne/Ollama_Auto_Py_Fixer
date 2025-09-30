@@ -1,0 +1,20 @@
+# Ollama Auto Py Fixer Requirements
+
+# Core dependencies
+pathlib
+python_version 
+# pathlib is included in standard library for Python >= 3.4
+ollama
+# No external packages required beyond standard library:
+# - sys
+# - subprocess
+# - json
+# - shutil
+# - re
+# - pathlib
+# - datetime
+# - time
+# - argparse
+
+# Note: Requires Ollama to be installed separately
+# Install from: https://ollama.ai/
