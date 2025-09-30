@@ -1,183 +1,183 @@
-Auto Orchestrator
+Ollama Auto Py Fixer
 
-Un système automatisé pour exécuter, analyser et corriger des projets Python de manière itérative.
+An automated system for executing, analyzing, and fixing Python projects iteratively.
 
-🚀 Vue d'ensemble
+🚀 Overview
 
-Auto Orchestrator est un ensemble d'outils qui permet de :
+Auto Orchestrator is a set of tools that enables:
 
-· Exécuter automatiquement tous les scripts Python d'un projet
-· Détecter les erreurs d'exécution
-· Corriger automatiquement les bugs en utilisant l'IA (Ollama)
-· Itérer jusqu'à ce que tous les scripts fonctionnent correctement
+· Automatically executing all Python scripts in a project
+· Detecting runtime errors
+· Automatically fixing bugs using AI (Ollama)
+· Iterating until all scripts work correctly
 
-📁 Structure du projet
+📁 Project Structure
 
 ```
 .
-├── auto_orchestrator.py    # Orchestrateur principal
-├── auto_return.py          # Exécuteur de scripts
-├── auto_fixer.py           # Correcteur automatique
-├── backups/               # Sauvegardes des fichiers modifiés
-├── execution_results/     # Résultats d'exécution et logs
-└── backup_scripts/        # Sauvegardes des correctifs
+├── auto_orchestrator.py    # Main orchestrator
+├── auto_return.py          # Script executor
+├── auto_fixer.py           # Automatic fixer
+├── backups/               # Backups of modified files
+├── execution_results/     # Execution results and logs
+└── backup_scripts/        # Backup of corrections
 ```
 
 🛠️ Installation
 
-1. Clonez le dépôt :
+1. Clone the repository:
 
 ```bash
-git clone <votre-repo>
+git clone <your-repo>
 cd auto-orchestrator
 ```
 
-1. Installez les dépendances :
+1. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-1. Installez Ollama :
+1. Install Ollama:
 
-· Téléchargez depuis ollama.ai
-· Ou installez avec :
+· Download from ollama.ai
+· Or install with:
 
 ```bash
 curl -fsSL https://ollama.ai/install.sh | sh
 ```
 
-1. Téléchargez le modèle Llama :
+1. Download the Llama model:
 
 ```bash
 ollama pull llama3:latest
 ```
 
-🎯 Utilisation
+🎯 Usage
 
-Orchestration complète
-
-```bash
-python auto_orchestrator.py run /chemin/vers/votre/projet
-```
-
-Exécution seule des scripts
+Complete Orchestration
 
 ```bash
-python auto_return.py exec -p /chemin/vers/projet
+python auto_orchestrator.py run /path/to/your/project
 ```
 
-Correction manuelle
+Script Execution Only
 
 ```bash
-python auto_fixer.py fix /chemin/vers/summary_xxx.json
+python auto_return.py exec -p /path/to/project
 ```
 
-🔧 Fonctionnalités
+Manual Correction
+
+```bash
+python auto_fixer.py fix /path/to/summary_xxx.json
+```
+
+🔧 Features
 
 Auto Return (auto_return.py)
 
-· 🔍 Détecte automatiquement tous les scripts Python
-· 🎯 Exécute d'abord les main.py, puis les autres scripts
-· 📊 Génère des rapports détaillés d'exécution
-· ⏱️ Gère les timeouts (5 minutes par défaut)
+· 🔍 Automatically detects all Python scripts
+· 🎯 Executes main.py files first, then other scripts
+· 📊 Generates detailed execution reports
+· ⏱️ Handles timeouts (5 minutes by default)
 
 Auto Fixer (auto_fixer.py)
 
-· 🤖 Utilise Ollama + Llama3 pour corriger les erreurs
-· 🔄 Crée des sauvegardes avant modification
-· 🧹 Nettoie le code généré par l'IA
-· 📝 Gère plusieurs formats de réponse (markdown, triples quotes)
+· 🤖 Uses Ollama + Llama3 to fix errors
+· 🔄 Creates backups before modification
+· 🧹 Cleans AI-generated code
+· 📝 Handles multiple response formats (markdown, triple quotes)
 
 Auto Orchestrator (auto_orchestrator.py)
 
-· 🔁 Processus itératif (max 10 itérations)
-· 📈 Surveillance en temps réel des progrès
-· 🛡️ Système de sauvegarde robuste
-· 📋 Rapports de statut détaillés
+· 🔁 Iterative process (max 10 iterations)
+· 📈 Real-time progress monitoring
+· 🛡️ Robust backup system
+· 📋 Detailed status reports
 
 ⚙️ Configuration
 
-Variables modifiables
+Modifiable Variables
 
 ```python
-MAX_ITERATIONS = 10        # Nombre max d'itérations
-SLEEP_BETWEEN = 1          # Secondes entre les itérations
-IGNORED_DIRS = {'__pycache__', 'venv', 'env', 'Scripts'}  # Dossiers ignorés
+MAX_ITERATIONS = 10        # Maximum number of iterations
+SLEEP_BETWEEN = 1          # Seconds between iterations
+IGNORED_DIRS = {'__pycache__', 'venv', 'env', 'Scripts'}  # Ignored directories
 ```
 
-Structure des résultats
+Results Structure
 
 ```
 execution_results/
-└── nom_du_projet/
+└── project_name/
     ├── summary_YYYYMMDD_HHMMSS.json
-    ├── chemin/vers/script1.py.log.txt
-    └── chemin/vers/script2.py.log.txt
+    ├── path/to/script1.py.log.txt
+    └── path/to/script2.py.log.txt
 ```
 
-🎪 Exemple de workflow
+🎪 Example Workflow
 
-1. Lancement :
+1. Launch:
 
 ```bash
-python auto_orchestrator.py run ./mon-projet
+python auto_orchestrator.py run ./my-project
 ```
 
-1. Itération 1 :
-   · Exécution de tous les scripts
-   · Détection de 3 scripts avec erreurs
-   · Génération des correctifs via IA
-   · Application des correctifs
-2. Itération 2 :
-   · Ré-exécution des scripts corrigés
-   · Plus que 1 script en erreur
-   · Nouvelle correction...
-3. Terminaison :
-   · Soit tous les scripts fonctionnent ✅
-   · Soit limite d'itérations atteinte ⏰
+1. Iteration 1:
+   · Execution of all scripts
+   · Detection of 3 scripts with errors
+   · Generation of fixes via AI
+   · Application of fixes
+2. Iteration 2:
+   · Re-execution of corrected scripts
+   · Only 1 script remaining with errors
+   · New correction...
+3. Termination:
+   · Either all scripts work ✅
+   · Or iteration limit reached ⏰
 
-🛡️ Sécurité et sauvegardes
+🛡️ Security and Backups
 
-· Sauvegarde automatique de chaque fichier modifié
-· Timestamp unique pour chaque modification
-· Structure préservée dans les dossiers de backup
-· Rollback manuel possible avec les fichiers .bak_*
+· Automatic backup of each modified file
+· Unique timestamp for each modification
+· Preserved structure in backup folders
+· Manual rollback possible with .bak_* files
 
-🐛 Dépannage
+🐛 Troubleshooting
 
-Erreurs courantes
+Common Errors
 
-1. Ollama non installé :
+1. Ollama not installed:
    ```bash
    [FIX][OLLAMA ERROR] [Errno 2] No such file or directory: 'ollama'
    ```
-   Solution : Installez Ollama et le modèle Llama3
-2. Timeout Ollama :
+   Solution: Install Ollama and the Llama3 model
+2. Ollama timeout:
    ```bash
-   [FIX][OLLAMA ERROR] Timeout lors de l'appel à Ollama.
+   [FIX][OLLAMA ERROR] Timeout during Ollama call.
    ```
-   Solution : Augmentez le timeout dans auto_fixer.py
-3. Projet introuvable :
+   Solution: Increase timeout in auto_fixer.py
+3. Project not found:
    ```bash
-   [ORCH][ERROR] Le chemin projet n'existe pas
+   [ORCH][ERROR] Project path does not exist
    ```
-   Solution : Vérifiez le chemin absolu du projet
+   Solution: Verify the absolute project path
 
-📊 Sorties
+📊 Outputs
 
-Fichiers générés
+Generated Files
 
-· summary_*.json : Métadonnées et résultats d'exécution
-· *.log.txt : Logs détaillés par script
-· backups/ : Sauvegardes des fichiers originaux
-· backup_scripts/ : Historique des corrections
+· summary_*.json: Metadata and execution results
+· *.log.txt: Detailed logs per script
+· backups/: Backups of original files
+· backup_scripts/: Correction history
 
-Format du summary JSON
+Summary JSON Format
 
 ```json
 {
-  "_project_root": "/chemin/absolu",
+  "_project_root": "/absolute/path",
   "script1.py": {
     "returncode": 0,
     "stdout": "...",
@@ -193,215 +193,16 @@ Format du summary JSON
 
 🤝 Contribution
 
-Les contributions sont les bienvenues ! N'hésitez pas à :
+Contributions are welcome! Feel free to:
 
-· Signaler des bugs
-· Proposer des améliorations
-· Soumettre des pull requests
+· Report bugs
+· Propose improvements
+· Submit pull requests
 
-📄 Licence
+📄 License
 
-MIT License - Voir le fichier LICENSE pour plus de détails.
+MIT License - See LICENSE file for details.
 
 ---
 
-Note : Cet outil utilise l'IA générative pour corriger le code. Vérifiez toujours les modifications apportées à votre code source.Auto Orchestrator
-
-Un système automatisé pour exécuter, analyser et corriger des projets Python de manière itérative.
-
-🚀 Vue d'ensemble
-
-Auto Orchestrator est un ensemble d'outils qui permet de :
-
-· Exécuter automatiquement tous les scripts Python d'un projet
-· Détecter les erreurs d'exécution
-· Corriger automatiquement les bugs en utilisant l'IA (Ollama)
-· Itérer jusqu'à ce que tous les scripts fonctionnent correctement
-
-📁 Structure du projet
-
-```
-.
-├── auto_orchestrator.py    # Orchestrateur principal
-├── auto_return.py          # Exécuteur de scripts
-├── auto_fixer.py           # Correcteur automatique
-├── backups/               # Sauvegardes des fichiers modifiés
-├── execution_results/     # Résultats d'exécution et logs
-└── backup_scripts/        # Sauvegardes des correctifs
-```
-
-🛠️ Installation
-
-1. Clonez le dépôt :
-
-```bash
-git clone <votre-repo>
-cd auto-orchestrator
-```
-
-1. Installez les dépendances :
-
-```bash
-pip install -r requirements.txt
-```
-
-1. Installez Ollama :
-
-· Téléchargez depuis ollama.ai
-· Ou installez avec :
-
-```bash
-curl -fsSL https://ollama.ai/install.sh | sh
-```
-
-1. Téléchargez le modèle Llama :
-
-```bash
-ollama pull llama3:latest
-```
-
-🎯 Utilisation
-
-Orchestration complète
-
-```bash
-python auto_orchestrator.py run /chemin/vers/votre/projet
-```
-
-Exécution seule des scripts
-
-```bash
-python auto_return.py exec -p /chemin/vers/projet
-```
-
-Correction manuelle
-
-```bash
-python auto_fixer.py fix /chemin/vers/summary_xxx.json
-```
-
-🔧 Fonctionnalités
-
-Auto Return (auto_return.py)
-
-· 🔍 Détecte automatiquement tous les scripts Python
-· 🎯 Exécute d'abord les main.py, puis les autres scripts
-· 📊 Génère des rapports détaillés d'exécution
-· ⏱️ Gère les timeouts (5 minutes par défaut)
-
-Auto Fixer (auto_fixer.py)
-
-· 🤖 Utilise Ollama + Llama3 pour corriger les erreurs
-· 🔄 Crée des sauvegardes avant modification
-· 🧹 Nettoie le code généré par l'IA
-· 📝 Gère plusieurs formats de réponse (markdown, triples quotes)
-
-Auto Orchestrator (auto_orchestrator.py)
-
-· 🔁 Processus itératif (max 10 itérations)
-· 📈 Surveillance en temps réel des progrès
-· 🛡️ Système de sauvegarde robuste
-· 📋 Rapports de statut détaillés
-
-⚙️ Configuration
-
-Variables modifiables
-
-```python
-MAX_ITERATIONS = 10        # Nombre max d'itérations
-SLEEP_BETWEEN = 1          # Secondes entre les itérations
-IGNORED_DIRS = {'__pycache__', 'venv', 'env', 'Scripts'}  # Dossiers ignorés
-```
-
-Structure des résultats
-
-```
-execution_results/
-└── nom_du_projet/
-    ├── summary_YYYYMMDD_HHMMSS.json
-    ├── chemin/vers/script1.py.log.txt
-    └── chemin/vers/script2.py.log.txt
-```
-
-🎪 Exemple de workflow
-
-1. Lancement :
-
-```bash
-python auto_orchestrator.py run ./mon-projet
-```
-
-1. Itération 1 :
-   · Exécution de tous les scripts
-   · Détection de 3 scripts avec erreurs
-   · Génération des correctifs via IA
-   · Application des correctifs
-2. Itération 2 :
-   · Ré-exécution des scripts corrigés
-   · Plus que 1 script en erreur
-   · Nouvelle correction...
-3. Terminaison :
-   · Soit tous les scripts fonctionnent ✅
-   · Soit limite d'itérations atteinte ⏰
-
-🛡️ Sécurité et sauvegardes
-
-· Sauvegarde automatique de chaque fichier modifié
-· Timestamp unique pour chaque modification
-· Structure préservée dans les dossiers de backup
-· Rollback manuel possible avec les fichiers .bak_*
-
-🐛 Dépannage
-
-Erreurs courantes
-
-1. Ollama non installé :
-   ```bash
-   [FIX][OLLAMA ERROR] [Errno 2] No such file or directory: 'ollama'
-   ```
-   Solution : Installez Ollama et le modèle Llama3
-2. Timeout Ollama :
-   ```bash
-   [FIX][OLLAMA ERROR] Timeout lors de l'appel à Ollama.
-   ```
-   Solution : Augmentez le timeout dans auto_fixer.py
-3. Projet introuvable :
-   ```bash
-   [ORCH][ERROR] Le chemin projet n'existe pas
-   ```
-   Solution : Vérifiez le chemin absolu du projet
-
-📊 Sorties
-
-Fichiers générés
-
-· summary_*.json : Métadonnées et résultats d'exécution
-· *.log.txt : Logs détaillés par script
-· backups/ : Sauvegardes des fichiers originaux
-· backup_scripts/ : Historique des corrections
-
-Format du summary JSON
-
-```json
-{
-  "_project_root": "/chemin/absolu",
-  "script1.py": {
-    "returncode": 0,
-    "stdout": "...",
-    "stderr": ""
-  },
-  "script2.py": {
-    "returncode": 1,
-    "stdout": "",
-    "stderr": "Error message..."
-  }
-}
-```
-
-🤝 Contribution
-
-Les contributions sont les bienvenues ! N'hésitez pas à :
-
-· Signaler des bugs
-· Proposer des améliorations
-· Soumettre des pull requests
+Note: This tool uses generative AI to fix code. Always verify modifications made to your source code.
